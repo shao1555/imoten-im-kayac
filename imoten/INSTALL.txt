@@ -1,0 +1,139 @@
+UTF-8
+
+Imotenは JavaSE6 以上を必要とします。
+あらかじめインストールしてください。
+
+動作確認はWindowsVistaSP1,Linux CentOS5.3,Mac OS X 10.5.8で行いました。
+ほかのOS上でも JavaSE6 が動作する環境であれば動作する可能性が高いです。
+
+
+★バックグラウンドで動作させない場合
+■Windows
+　bin/ImotenWrapper.bat を実行します。
+
+■UNIX系
+　bin/imoten cosole を実行します。
+
+■Javaコマンドで直接実行する方法
+　binディレクトリに移動して以下のコマンドを実行します。
+　java -Dfile.encoding=UTF-8 -Dsun.nio.cs.map=x-windows-iso2022jp/ISO-2022-JP,Windows-31J/Shift_JIS -cp ../lib/skype.jar -jar ../imoten.jar
+
+
+★バックグラウンドで動作させる場合
+■Windows
+▼インストール方法
+1.展開したフォルダを適当なフォルダに移動させます。
+
+2.設定を行います。
+　imoten.ini ファイルを編集してください。
+　設定パラメータについては Parameter.txt を確認してください。
+
+3.Windowsサービスに登録します。
+　binフォルダの InstallImotenWapper-NT.bat を実行します。
+　管理者権限で実行します。Vistaなどでは注意してください。
+　サービス登録後にフォルダの移動を行うとサービスが起動できません。
+
+4.Imotenサービスを起動します。
+　コントロール パネル -> 管理ツール -> サービス を開きます。
+　Imoten という名前のサービスがあるので[開始]してください。
+　次回からはPCを起動すると自動でサービスが起動されます。
+
+
+▼アンインストール方法
+1.Windowsサービスを削除します。
+　binフォルダの UninstallImotenWapper-NT.bat を実行します。
+　管理者権限で実行します。Vistaなどでは注意してください。
+　コントロール パネル -> 管理ツール -> サービス から
+　削除されていることを確認してください。
+
+2.imotenのフォルダを削除してください。
+
+
+
+
+■Linux
+▼インストール方法
+1.ファイルを展開します。
+　# mkdir /usr/local/imoten
+　# unzip -d /usr/local/imoten imoten-x.x.x.zip
+
+2.設定を行います。
+　imoten.ini ファイルを編集してください。
+　設定パラメータについては Parameter.txt を確認してください。
+
+3.conf/wrapper.confを編集します。
+　wrapper.java.command にjavaの絶対パスを指定します。
+　例) wrapper.java.command=/usr/local/java/bin/java
+
+　wrapper.app.parameter.1=immf.ServerMain の下に以下の行を追加します。(Java Service Wrapperのバグ?)
+　wrapper.app.parameter.2=immf.ServerMain
+
+4.実行権限付与
+　# chmod +x bin/imoten
+　# chmod +x bin/wrapper*
+
+
+4.init.dへ登録
+　以下はCentOSの場合です。
+　それぞれのディストリビューションの流儀にそって登録してください。
+　# ln -s /usr/local/imoten/bin/imoten /etc/init.d/imoten
+　# /sbin/chkconfig --add imoten
+
+5.起動
+　以下はCentOSの場合です。
+　# /etc/init.d/imoten start
+
+
+▼アンインストール方法
+1.init.dから削除
+　/etc/init.d/imoten stop
+　/sbin/chkconfig --del imoten
+　rm /etc/init.d/imoten
+
+2.ファイルの削除
+　rm -rf /usr/local/imoten
+
+
+
+
+■Mac OS X
+▼インストール方法
+1.ファイルを展開します。
+　imoten-x.x.x.zip の中身を /Applications/imoten に移動します。
+
+3.conf/wrapper.confを編集します。
+　wrapper.java.command にjavaの絶対パスを指定します。
+　複数のバージョンのJavaがインストールされている場合も、確実にJavaSE6で実行されるように
+　指定してください。
+　例) wrapper.java.command=/System/Library/Frameworks/JavaVM.framework/Versions/1.6/Commands/java
+
+　wrapper.app.parameter.1=immf.ServerMain の下に以下の行を追加します。(Java Service Wrapperのバグ?)
+　wrapper.app.parameter.2=immf.ServerMain
+
+4.実行権限付与
+　sudo chmod +x /Applications/imoten/bin/imoten
+　sudo chmod +x /Applications/imoten/bin/wrapper*
+
+5.スタートアップの設定を行います。
+　sudo mkdir /Library/StartupItems/imoten
+　sudo cp /Applications/imoten/bin/mac_startup/* /Library/StartupItems/imoten/
+　sudo chmod -R 755 /Library/StartupItems/imoten
+
+6.起動
+　sudo /sbin/SystemStarter start imoten
+
+
+▼アンインストール方法
+1.スタートアップルスクリプトの削除
+　sudo /sbin/SystemStarter stop
+　sudo rm -rf /Library/StartupItems/imoten
+
+2.ファイルの削除
+　rm -rf /Applications/imoten
+
+
+
+
+
+
+

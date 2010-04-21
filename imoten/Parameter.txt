@@ -1,0 +1,325 @@
+UTF-8
+
+■imoten.ini の設定パラメータ
+	XXXXX=YYYYY
+	の形式で指定する。
+	#でコメントアウトできる。
+
+docomo.id
+  imode.netのログインID。
+
+docomo.passwd
+　imode.netのログインパスワード。
+
+smtp.server
+　転送に使用するSMTPサーバのホスト名もしくはIPアドレス。
+
+smtp.port
+　転送に使用するSMTPサーバのポート番号。
+　デフォルト25。
+
+smtp.connecttimeout
+　転送に使用するSMTPサーバとの接続タイムアウト時間(秒)。
+　デフォルト[10]。
+
+smtp.timeout
+　転送に使用するSMTPサーバとの送受信タイムアウト時間(秒)。
+　デフォルト[30]。
+
+smtp.tls
+　転送に使用するSMTPサーバがTLSを使用する場合[true]。
+　TLSを使用しない場合[false]。
+　デフォルト[false]。
+
+smtp.from
+　SMTPサーバへ送信する自分のメールアドレス。
+　SMTPコマンドの[MAIL FROM]で指定します。
+　[forward.rewriteaddress]を[true]にした場合、Fromヘッダの
+　アドレスになります。
+
+smtp.auth.user
+　SMTPサーバが認証を必要とする場合、ユーザ名を指定します。
+
+smtp.auth.passwd
+　SMTPサーバが認証を必要とする場合、パスワードを指定します。
+
+popbeforesmtp.server
+　POP before SMTP認証を行う場合、POPサーバのホスト名
+　もしくはIPアドレスを指定します。
+
+popbeforesmtp.user
+　POP before SMTP認証を行う場合、POPサーバのユーザ名を指定します。
+
+popbeforesmtp.passwd
+　POP before SMTP認証を行う場合、POPサーバのパスワードを指定します。
+
+emojireplace.subject
+　[true]を指定すると、メールの題名に絵文字があった場合にその絵文字を[はれ]の様な
+　説明ラベルに置き換えます。
+　[false]を指定すると、そのまま送信します。その場合、PCで表示すると絵文字は
+　正しく表示されません。
+　デフォルト[true]。
+
+emojireplace.body
+　[inline]の場合、絵文字をGMailの画像に置き換え、その画像をメールにインラインで添付します。
+　メールはHTMLメールに変換されます。
+　[link]の場合、絵文字をGMailの画像へのリンク<img src="...">に置き換えます。
+　絵文字を表示するには、メール閲覧時インターネットにつながっている必要があります。
+　メールはHTMLメールに変換されます。
+　[label]の場合、絵文字をはれ]の様な説明ラベルに置き換えます。
+　[none]の場合、絵文字の置き換えを行いません。PCで表示すると絵文字は正しく表示されません。
+　デフォルト[inline]。
+
+forward.subject.prefix
+　転送時に題名の先頭に追加する文字列を指定します。
+　デフォルト空文字列。
+
+forward.to
+　転送時のTOのアドレスです。複数ある場合[,]区切りで指定します。
+　自分のiモードメールアドレスを設定してループしないように気をつけてください。
+
+forward.cc
+　転送時のCCのアドレスです。複数ある場合[,]区切りで指定します。
+　自分のiモードメールアドレスを設定してループしないように気をつけてください。
+
+forward.bcc
+　転送時のBCCのアドレスです。複数ある場合[,]区切りで指定します。
+　自分のiモードメールアドレスを設定してループしないように気をつけてください。
+
+forward.skype.chat
+　skypeのチャットでメールの内容を通知します。
+　通知先のSkypeIDを指定します。通知先はあらかじめコンタクトリストに
+　追加しておいてください。
+　メールの内容はテキストに変換され、添付ファイルは送信されません。
+　メールの補助的に使用してください。
+　この機能はSkypeAPI(Skype4javaを使用)を使用しています。別途Skypeを
+　起動しておく必要があります。
+
+forward.skype.sms
+　skypeのSMS機能を使用してSMSでメールを通知します。
+　通知先の携帯電話番号を指定します。090-1234-5678の場合は、
+　+819012345678になります。
+　SMSの送信は有料になります。1通あたり8円くらいかかるようです。
+　あらかじめskypeクレジットを購入しておいてください。
+　SMSは日本語が含まれる場合、1通あたり最大70文字に制限されます。
+　1メールあたり、1SMSしか送信しないので、メールの本文は少ししか送信されません。
+　補助的に使用するようにしてください。
+　この機能はSkypeAPI(Skype4javaを使用)を使用しています。別途Skypeを
+　起動しておく必要があります。
+
+forward.replyto
+　転送時のReply-Toのアドレスです。複数ある場合[,]区切りで指定します。
+
+forward.rewriteaddress
+　[true]の場合、転送時のFROM,TO,CCヘッダをsmtp.from,forward.to,forward.ccに
+　置き換えます。
+　[false]の場合、imodeメールのFROM,TO,CCを転送時のメールに指定します。
+　デフォルト[true]。
+
+forward.headertobody
+　[true]の場合、メールの先頭にimodeメールのFrom,CCなどの情報を追加します。
+　デフォルト[true]。
+
+imodenet.checkinterval
+　imode.netで新着メールをチェックする間隔(秒)を指定します。
+　デフォルト[60]。
+
+imodenet.logininterval
+　imode.netへのログインが失敗した場合、再度ログインを行うまでの時間(秒)を
+　指定します。
+　PCからiモード.netにログインした場合、imotenはログアウトして設定時間後に
+　再度ログインを行います。
+　PCでもiモード.netを使用する場合、操作する時間分だけ余裕を持った時間を指定して下さい。
+　デフォルト[600]。
+
+save.cookie
+　[true]の場合、ログイン時のCookie情報を保存します。
+　起動時にこの情報を使用してアクセスします。
+　プログラムやPCの再起動などで数分程度の停止の場合は、
+　ログイン処理が省略でき、ログインメールが送信を防ぐことができます。
+　[false]の場合、Cookie情報は保存されません。
+　デフォルト[true]。
+
+save.filename
+　最後に転送したメールID情報を保存するファイル名を指定します。
+　[save.cookie]が[true]の場合はCookie情報も一緒に保存されます。
+　相対パスを指定した場合、binディレクトリからの相対パスになります。
+　デフォルト[../status.ini]。
+
+addressbook.csv
+　CSV形式のアドレス帳ファイル名を指定します。
+　アドレス帳にメールアドレスが登録されていると、
+　iモード.net->imoten->[smtp.server]で転送されるときに、
+　送信元、送信先のメールアドレスにディスプレイネームを付加します。
+　　"ディスプレイネーム"<myname@example.com>
+　CSVファイルは文字コードUTF-8で保存してください。
+　相対パスを指定した場合、binディレクトリからの相対パスになります。
+　デフォルト[../address.csv]
+
+　CSVフォーマット:
+　　メールアドレス1,ディスプレイネーム1
+　　メールアドレス2,ディスプレイネーム2
+　　　　　　　　　　:
+　　メールアドレスN,ディスプレイネームN
+
+addressbook.vcard
+　vCard形式のアドレス帳ファイル名を指定します。
+　アドレス帳にメールアドレスが登録されていると、
+　iモード.net->imoten->[smtp.server]で転送されるときに、
+　送信元、送信先のメールアドレスにディスプレイネームを付加します。
+　　"ディスプレイネーム"<myname@example.com>
+　相対パスを指定した場合、binディレクトリからの相対パスになります。
+　デフォルト[../address.vcf]
+
+http.conntimeout
+　httpでの接続タイムアウト時間(秒)を指定します。
+　デフォルト[10]。
+
+http.sotimeout
+　httpでの受信タイムアウト時間(SO_TIMEOUT)(秒)を指定します。
+　デフォルト[10]。
+
+mail.debug
+　mailライブラリのデバッグフラグを指定します。
+　メールの送信がうまくいかない場合には[true]を指定してください。
+　ログファイルに詳細なメールログが出力されます。
+
+mail.encode
+　メールのエンコーディングを指定します。
+　ISO-2022-JPだと機種も依存文字が送信できないので、デフォルトでは
+　UTF-8で送信します。もし使用しているメーラーがUTF-8に対応していない場合、
+　iso-2022-jpなど別のエンコーディングを指定してみてください。
+　その場合は、下に説明している conf/wrapper.conf の設定も
+　デフォルト[UTF-8]
+
+mail.contenttransferencoding
+　メールの本文部分のContent-Transfer-Encodingを指定します。
+　文字化けする場合、[7bit]を指定してみてください。
+　デフォルト ライブラリ任せ
+
+mail.alternative
+　trueを設定すると、転送するメールにtext/plainも含めて、
+　multipart/alternativeで送信する。
+　デフォルト[false]
+
+sender.smtp.port
+　imode.net経由でメールを送信する場合、imotenが動作しているPCで
+　SMTPを待ち受けるポート番号を指定してください。
+　デフォルトはSMTPの待ち受けを行いません。
+　imode.net経由でメールを送信する場合は必ず指定してください。
+　
+sender.smtp.user
+　imode.net経由でメールを送信する場合の認証ユーザ名を
+　指定します。
+
+sender.smtp.passwd
+　imode.net経由でメールを送信する場合の認証パスワードを
+　指定します。
+
+sender.alwaysbcc
+　imode.net経由でメールを送信する場合に常にBCCで追加するメールアドレスを
+　指定します。メールアドレスは1つしか指定することはできません。
+　デフォルト未設定
+
+sender.charconvfile
+　imode.net経由でメールを送信する場合にメールの内容の特定の文字を置き換えるための
+　対応表のCSVファイルを指定します。絵文字を置き換えるのが主な目的ですが、絵文字以外の
+　文字も置き換え可能です。
+　CSVファイルは文字コードUTF-8で保存してください。
+　相対パスを指定した場合、binディレクトリからの相対パスになります。
+
+　CSVフォーマット:
+　　置換元の文字のUnicode,置換先の文字のUnicodeもしくは置換先の文字列
+　例:
+　　# 「あ」を「い」に置き換える
+　　3042,3044
+　　# 「Ａ」を「[全角A]」に置換える
+　　FF21,[全角A]
+	
+　置換先が0～9,a～z,A～Zだけで構成されている場合はUnicode、そうでない場合は文字列として
+　処理されます。「#」で始まる行はコメント行となります。
+
+　convディレクトリにサンプルファイルがあります。[../conv/～]のように設定して使用することができます。
+　・SbToDocomo.csv
+　　wkazuwさんが作成してくれたソフトバンクの絵文字をドコモの絵文字に変換してくれます。
+　・gen(Au/Sb)2docomo.csv
+　　「http://emoji4unicode.googlecode.com/svn/trunk/data/emoji4unicode.xml」から
+　　スクリプトで生成した変換表で、Auもしくはソフトバンクの絵文字を、ドコモの絵文字もしくは
+　　その絵文字があらわす文字列に変更してくれます。
+
+
+sender.forceplaintext
+　imode.net経由でメールを送信する場合に、SMTPで受信したメールがHTMLメールだった
+　場合の動作を設定します。trueの場合、multipart/alternativeの場合はtext/plainを
+　送信し、text/htmlの場合はテキストに変換して送信します。falseの場合、text/htmlが
+　ある場合はエラーにならないデコメールの形式に変換して送信します。この場合は
+　画像をインラインで添付できます。
+　デフォルト[true]
+
+sender.smtp.tls.keystore
+　imode.net経由でメールを送信する場合にTLSを使用する場合に、keystoreファイルの
+　場所を指定します。相対パスを指定した場合、binディレクトリからの相対パスになります。
+　設定しなかった場合、TLSは使用できません。
+　keystoreファイルを作成する方法は以下のURLを参照してください。
+　[ http://java.sun.com/javase/ja/6/docs/ja/technotes/tools/solaris/keytool.html ]
+
+sender.smtp.tls.keytype
+　[sender.smtp.tls.keystore]のタイプを指定します。JKS/PKCS12。
+　デフォルト[JKS]
+
+sender.smtp.tls.keypasswd
+　[sender.smtp.tls.keystore]のパスワードを指定します。
+
+
+■サンプル
+SMTPサーバ関係のみ記述しています。
+転送先でなく転送に使用するメールサーバの設定です。
+
+▼GmailのSMTPサーバで送信する場合
+smtp.server=smtp.gmail.com
+smtp.port=587
+smtp.tls=true
+smtp.from=<あなたのGmailユーザ名>@gmail.com
+smtp.auth.user=<あなたのGmailユーザ名>@gmail.com
+smtp.auth.passwd=<あなたのGmailパスワード>
+
+
+▼Windows Live HotmailのSMTPサーバで送信する場合
+smtp.server=smtp.live.com
+smtp.port=587
+smtp.tls=true
+smtp.from=<あなたのHotmailアドレス>
+smtp.auth.user=<あなたのHotmailアドレス>
+smtp.auth.passwd=<あなたのHotmailパスワード>
+
+
+
+■conf/wrapper.conf の設定パラメータ
+
+wrapper.java.additional.2=-Dsun.nio.cs.map=x-windows-iso2022jp/ISO-2022-JP,Windows-31J/Shift_JIS　
+　[①]のような機種依存文字は、本来[ISO-2022-JP],[Shift_JIS]には含まれません。
+　なので、機種依存文字を[ISO-2022-JP],[Shift_JIS]で送信すると、[？]に置き換えられてしまいます。
+　そこで、上記の設定を行うと、[？]にならず、機種依存文字を[ISO-2022-JP],[Shift_JIS]に含めて
+　処理してくれます。
+　ただし、メーラ(特にMacやLinuxの場合)によっては文字化けが発生するかもしれません。
+　その場合は上記の行を[#]でコメントアウトしてください。
+　また、上記の設定をしていない場合は、「―～∥－￠￡￢」の文字化けを防ぐために、これらの文字を
+　以下のページを参考に置き換えています。
+　これは、mail.encodeに[UTF-8]を指定している場合も影響があります。
+　文字化けが発生する場合は、[#]でコメントアウトすることで状況が変わる可能性があります。
+　　http://www.ingrid.org/java/i18n/encoding/ja-conv.html
+
+
+
+
+■文字化けに関係するパラメータ
+　iモード.netから転送したメールが文字化けが発生する場合、
+　以下のパラメータを色々な組み合わせで変更して、状況が変わるか試してみてください。
+
+　imoten.ini
+	mail.encode=ISO-2022-JP
+	mail.contenttransferencoding=7bit
+
+　conf/wrapper.conf で以下のパラメータをコメントアウト
+　　wrapper.java.additional.2=-Dsun.nio.cs.map=x-windows-iso2022jp/ISO-2022-JP,Windows-31J/Shift_JIS
+
