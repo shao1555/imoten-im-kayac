@@ -1,0 +1,49 @@
+imoten + im.kayac.com通知
+- original project: http://code.google.com/p/imoten/
+- forked project: http://github.com/shao1555/imoten-im-kayac
+
+- description
+メールが来るとim.kayac.comにnotificationを送信します。
+im.kayac.comを通じてGoogle TalkやiPhoneにメッセージを送ることができます。
+[im.kayac.com] http://im.kayac.com/
+
+現在は秘密鍵認証にしか対応していませんので、API認証設定を「秘密鍵認証を使用する」にしてください。
+[設定 - im.kayac.com] http://im.kayac.com/setting/api
+
+- compile
+Mac OS X 10.6.2 (x86_64) で確認しました。
+
+% git clone git://github.com/shao1555/imoten-im-kayac.git
+% cd imoten-im-kayac
+% cp imoten/lib/skype.jar lib/
+% ant -Dfile.encoding=UTF8
+
+imoten-1.1.15.zip が完成すればOKです。
+
+- install, configuration, setup 
+
+% mkdir /path/to/imoten-root
+% unzip -d /path/to/imoten-root imoten-1.1.15.zip
+% cd /path/to/imoten-root/
+% vim imoten.ini
+
+" 基本的には http://code.google.com/p/imoten/wiki/SampleConfig の設定に沿う
+" forward.im.kayac.username に im.kayac.com のユーザー名
+" forward.im.kayac.secret に im.kayac.com の秘密鍵を入れます
+
+% cd bin && java -Dfile.encoding=UTF-8 -Dsun.nio.cs.map=x-windows-iso2022jp/ISO-2022-JP,Windows-31J/Shift_JIS -jar ../imoten.jar
+
+これで起動します。
+
+- notes
+* 簡単なテストはしましたが、添付ファイルやデコメールまでは確認していません。人柱版だと思ってください。
+* 日本語は500文字でchompします。
+* 何かありましたら http://twitter.com/shao1555 まで direct message か @でお知らせください。お返事するかもしれません。
+* imoten と同じく GPL v3でライセンスします。
+http://www.gnu.org/licenses/gpl-3.0.html
+  本家にマージされたりするとうれしいですね！
+
+imotenを開発されたshoozhoo様、ほんとうにありがとうございます。
+
+- changelog
+2010-04-22 initial release
